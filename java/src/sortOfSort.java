@@ -1,43 +1,44 @@
 public class sortOfSort {
 
+    public static int findMax(int[] array, int start, int end) {
+        int indexOfMax = start;
+
+        for(int i = start; i <= end; i++) {
+            if(array[i] >= array[indexOfMax]) {
+                indexOfMax = i;
+                if(i == end) {
+                    return indexOfMax;
+                }
+            }
+        }
+        return indexOfMax;
+    }
+
     public static void sortOfSort(int[] array) {
-        int elements = array.length;
-        int index = 0;
-        sortOfSortRecursive(array, elements, index);
-    }
-
-    public static void swapElements(int[] array, int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-
-    public static void sortOfSortRecursive(int[] array, int elements, int index) {
+        int start = 0;
+        int end = array.length - 1;
         int countSwaps = 0;
-        int superCount = 0;
 
-        if(index < elements - 1) {
-            if (array[index] > array[index + 1]) {
-                swapElements(array, index, index + 1);
+        while (start < end) {
+            if (countSwaps < 2) {
+                int indexOfMax = findMax(array, start, end);
+                int temp = array[indexOfMax];
+                array[indexOfMax] = array[end];
+                array[end] = temp;
+                countSwaps++;
+                end--;
             }
             else {
-                sortOfSortRecursive(array, elements - 1, index + 1);
+                int indexOfMax = findMax(array, start, end);
+                int temp = array[indexOfMax];
+                array[indexOfMax] = array[start];
+                array[start] = temp;
+                start++;
+                countSwaps++;
+            }
+            if(countSwaps == 4) {
+                countSwaps = 0;
             }
         }
-        if(elements - 1 > 1) {
-            sortOfSortRecursive(array, elements - 1, index + 1);
-        }
-
     }
-
-
-
-
-
-
-
-
-
-
-// end of class //
 }
