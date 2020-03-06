@@ -36,7 +36,7 @@ public class sortOfSort {
                 start++;
                 countSwaps++;
             }
-            if(countSwaps == 4) {
+            if (countSwaps == 4) {
                 countSwaps = 0;
             }
         }
